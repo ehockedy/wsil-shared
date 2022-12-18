@@ -27,6 +27,7 @@ paths:
             required:
               - placesToLive
               - importantPlaces
+              - latLng
             properties:
               placesToLive:
                 description: The Google maps place IDs for places to live that will be ranked based on their proximity to the important places
@@ -43,6 +44,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/TravelModesEnum'
+              latLng:
+                description: Latitude and longitude to represent the rough location of the potential homes
+                type: object
+                $ref: '#/definitions/LatLng'
       responses:
         "200":
           description: List of potential places to live, ranked by suitability
@@ -119,6 +124,20 @@ definitions:
         description: Amount of time spent travelling
         type: number
         format: float
+  LatLng:
+    type: object
+    required:
+      - lat
+      - lng
+    properties:
+      lat:
+        type: number
+        format: double
+        description: Latitude
+      lng:
+        type: number
+        format: double
+        description: Longitude
   Error:
     type: "object"
     required:
